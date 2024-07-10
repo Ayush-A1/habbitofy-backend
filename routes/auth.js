@@ -34,7 +34,7 @@ router.post('/manual/login', [
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '24h' })
         res.cookie('authToken', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: true,
             sameSite: 'None',
         })
 
@@ -77,7 +77,7 @@ router.post('/manual/register', [
         const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '24h' })
         res.cookie('authToken', token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
+            secure: true,
             sameSite: 'None',
         })
 
@@ -123,7 +123,7 @@ router.post('/get-user', async (req, res) => {
 router.post('/logout', (req, res) => {
     res.clearCookie('authToken', {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
         sameSite: 'None',
     });
     return res.status(200).json("Logout Success");
@@ -251,7 +251,7 @@ router.post('/match-otp', [
                 const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '24h' })
                 res.cookie('authToken', token, {
                     httpOnly: true,
-                    secure: process.env.NODE_ENV === 'production',
+                    secure: true,
                     sameSite: 'None',
                 })
 
